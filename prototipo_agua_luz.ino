@@ -4,6 +4,13 @@ void setup()
 {
   pinMode(relay_agua, OUTPUT);
   pinMode(relay_luz, OUTPUT);
+
+    digitalWrite(relay_agua, LOW);  //Liga rele agua
+    digitalWrite(relay_luz, LOW);  //Liga rele agua
+    delay(10000);
+    digitalWrite(relay_agua, HIGH);  //Desliga rele luz
+    digitalWrite(relay_luz, HIGH);  //Desliga rele luz
+
 }
 
   int dia=0;
@@ -11,6 +18,17 @@ void setup()
 
 void loop()
 {
+
+  //noite 20h-06h
+  while(noite<4){
+    digitalWrite(relay_luz, HIGH);  //Desliga rele luz
+    digitalWrite(relay_agua, LOW);  //Liga rele agua
+    delay(900000);
+    digitalWrite(relay_agua, HIGH); //Desliga rele agua
+    delay(8100000);
+    noite++;
+  }
+  noite=0;
 
   //dia 06h-20h
   while(dia<28){
@@ -23,15 +41,5 @@ void loop()
   }
   dia=0;
 
-  //noite 20h-06h
-  while(noite<4){
-    digitalWrite(relay_luz, HIGH);  //Desliga rele luz
-    digitalWrite(relay_agua, LOW);  //Liga rele agua
-    delay(900000);
-    digitalWrite(relay_agua, HIGH); //Desliga rele agua
-    delay(8100000);
-    noite++;
-  }
-  noite=0;
 
 }
